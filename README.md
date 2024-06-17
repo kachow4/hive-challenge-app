@@ -3,6 +3,9 @@
 
 ## DropdownMenu Component
 * options prop takes in a list of objects with the format {id: ___ , value: ___} assuming that the list of data is fetched from a database. The id is included to be used as a key for list items.
+* width, height, and maxWidth props to help style the button (default values are 'fit-content', '40px', and '260px' respectively)
+* multiSelect takes in a boolean (default is false)
+* label takes a string (default is "Select Value: ")
   
 ## Imports Used:
 * react-windows: for better efficiently loading lots of data
