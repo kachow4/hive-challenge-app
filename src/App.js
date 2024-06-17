@@ -29,8 +29,8 @@ const NUMBERS = [{id: 'a', value: 1},
   {id: 's', value: 19}, 
   {id: 't', value: 20}];
 
-//ARRAY OF 20,000 DATA ENTRIES
-const BIG_ARRAY = Array.apply(null, Array(20000)).map((y, i) => {return i + 1;});
+//ARRAY OF 2,000,000 INDEXES
+const BIG_ARRAY = Array.from({length: 2000000}, (x, i) => i + 1);
 
 function App() {
   const [authorsList, setAuthorsList] = useState([]);
@@ -53,10 +53,11 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Katie Chow - Hive Take Home Prompt</h1>
       <div className='dropdowns'>
-        <DropdownMenu multiSelect={true} options={NAMES} placeholder="Tag"/>
-        <DropdownMenu options={NUMBERS} placeholder="Age"/>
-        <DropdownMenu multiSelect={true} options={authorsList.map(author => { return {id: author._id, value: author.name} })} placeholder='Authors' />
+        <DropdownMenu multiSelect={true} options={NAMES} label="Tag"/>
+        <DropdownMenu options={NUMBERS} label="Age"/>
+        <DropdownMenu multiSelect={true} options={authorsList.map(author => { return {id: author._id, value: author.name} })} label='Authors' />
         <DropdownMenu multiSelect={true} options={BIG_ARRAY.map(num => { return {id: crypto.randomUUID, value: num}})} />
       </div>
     </div>

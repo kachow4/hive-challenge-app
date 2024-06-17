@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
 import { FixedSizeList as List } from "react-window";
-import './DropdownMenu.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import './DropdownMenu.css';
 
-const DropdownMenu = ({multiSelect = false, options, placeholder = "Select value:"}) => {
+const DropdownMenu = ({multiSelect = false, options, label = "Select value:"}) => {
     const [openDropdown, setOpenDropdown] = useState(false); // updates whether or not the dropdown is open or closed
     const [selected, setSelected] = useState([]); // updates which options in the dropdown are selected
 
     // opens and closes the dropdown
-    const handleClick = () => {
+    const handleDropdown = () => {
         setOpenDropdown(!openDropdown);
     }
 
     //handles and updates the list of selected options
     const selectOption = ( option ) => {
         if ( multiSelect ) {
-            selected.includes(option) ? 
-                setSelected(prev => prev.filter(o => o !== option)) : 
-                setSelected([...selected, option]);
+            if (selected.includes(option)){ 
+                setSelected(prev => prev.filter(o => o !== option));
+            }
+            else if (selected.length + 1 === options.length) {
+                setSelected(options);
+            }
+            else {
+                setSelected(prev => [...prev, option]);
+            }
         }
         else {
             selected.length === 1 && selected[0] === option ? setSelected([]) : setSelected([option]);
@@ -32,12 +38,14 @@ const DropdownMenu = ({multiSelect = false, options, placeholder = "Select value
 
     return (
         <div className='container'>
-            <div className='label'>{selected.length > 0 && placeholder}</div>
+            <div className='label'>{selected.length > 0 && label}</div>
 
             {/* SINGLE SELECT DROPDOWN */}
             { !multiSelect && 
-                <button className='button-dropdown' onClick={handleClick}>
-                    { selected.length === 0 ? placeholder : selected[0].value }
+                <button className={`button-dropdown ${openDropdown && 'active'}`} onClick={handleDropdown}>
+                    <span className='button-dropdown-text'>
+                        { selected.length === 0 ? label : selected[0].value }
+                    </span>
                     <FontAwesomeIcon icon={ openDropdown ? faChevronUp : faChevronDown}/>
                 </button>
             }
@@ -61,9 +69,9 @@ const DropdownMenu = ({multiSelect = false, options, placeholder = "Select value
             </div>}
 
             {/* MULTI SELECT DROPDOWN */}
-            { multiSelect && <button className='button-dropdown' onClick={handleClick}>
+            { multiSelect && <button className={`button-dropdown ${openDropdown && 'active'}`} onClick={handleDropdown}>
                 <span className='button-dropdown-text'>
-                    { selected.length < 1 ? placeholder : selected.map((option) => (option.value)).join(", ")}
+                    { selected.length < 1 ? label : selected.map((option) => (option.value)).join(", ")}
                 </span>
                 <FontAwesomeIcon icon={ openDropdown ? faChevronUp : faChevronDown}/>
             </button>}
@@ -74,7 +82,7 @@ const DropdownMenu = ({multiSelect = false, options, placeholder = "Select value
                     <div>Select All</div>
                 </div>
                 <List
-                    height={200}
+                    height={options.length > 10 ? 200 : options.length*30}
                     itemCount={options.length}
                     itemSize={30}
                     width={240}

@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(170, 223, 161);
+    background-color: rgb(185, 238, 175);
 }
 
 .container {
@@ -33,11 +33,16 @@ body {
     cursor: pointer;
 }
 
+.button-dropdown.active {
+    border: 2px solid rgb(43, 117, 60);
+}
+
 .button-dropdown-text {
-    width: fit-content;
+    width: calc(100% - 20px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 16px;
 }
 
 .list-wrapper {
