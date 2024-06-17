@@ -1,11 +1,21 @@
 
 # Katie Chow - Hive Take Home Prompt
 
+Thank you for the challenge, I had a fun time!
+
 ## Instructions to Run the Project
 1) Clone the repository using git clone [insert link] in your terminal
 2) In your terminal, navigate to 'hive-challenge-app' in your directory using cd
 3) Once in the correct directory, run 'npm install'
 3) When finished installing, run 'npm start' to start the project
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
 ## DropdownMenu Component
 * options prop takes in a list of objects with the format {id: ___ , value: ___} assuming that the list of data is fetched from a database. The id is included to be used as a key for list items.
@@ -29,19 +39,7 @@
 * add more props for more flexible styling
 * improve styling, responsiveness and animations
 
-### Thank you for reading, I had a fun time!
-
 ## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
 ### `npm test`
 
