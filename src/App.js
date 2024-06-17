@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import DropdownMenu from './components/DropdownMenu';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 // LOCAL DATA FOR TESTING
 const NAMES = [{id: 'a', value: "Oliver Hansen"}, 
@@ -53,12 +55,22 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Katie Chow - Hive Take Home Prompt</h1>
+      <h1 className='title'>Katie Chow - Hive Take Home Prompt</h1>
       <div className='dropdowns'>
-        <DropdownMenu multiSelect={true} options={NAMES} label="Tag"/>
-        <DropdownMenu options={NUMBERS} label="Age"/>
-        <DropdownMenu multiSelect={true} options={authorsList.map(author => { return {id: author._id, value: author.name} })} label='Authors' />
-        <DropdownMenu multiSelect={true} options={BIG_ARRAY.map(num => { return {id: crypto.randomUUID, value: num}})} />
+        <DropdownMenu multiSelect={true} 
+                      options={NAMES} 
+                      label="Tag" 
+                      height="30px"
+                      maxWidth='400px'/>
+        <DropdownMenu options={NUMBERS} 
+                      label="Age" 
+                      width="100px"/>
+        <DropdownMenu multiSelect={true} 
+                      options={authorsList.map(author => { return {id: author._id, value: author.name} })} 
+                      label='Authors' 
+                      height="50px"/>
+        <DropdownMenu multiSelect={true} 
+                      options={BIG_ARRAY.map(num => { return {id: crypto.randomUUID, value: num}})} />
       </div>
     </div>
   );

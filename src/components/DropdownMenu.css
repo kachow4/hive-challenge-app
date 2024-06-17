@@ -2,14 +2,6 @@ body {
     background-color: rgb(185, 238, 175);
 }
 
-.container {
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin: 10px;
-}
-
 .label {
     height: 20px;
     text-align: left;
@@ -22,7 +14,7 @@ body {
     width: fit-content;
     max-width: 260px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     gap: 20px;
     padding: 10px;
@@ -46,8 +38,8 @@ body {
 }
 
 .list-wrapper {
+    position: absolute;
     width: fit-content;
-    max-height: 300px;
     display: flex;
     flex-direction: column;
     gap: 5px;
