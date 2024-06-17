@@ -11,13 +11,12 @@
 ## Notes:
 * I try to use ternary operators wherever possible, but if the code becomes unreadable, I like to use if/else statements so it is easier on the eye
 * To fully focus on using React and JavaScript, I built this app with create-react-app, but when building larger apps I would start with using NextJS framework
-* If the list data was locally generated, I would have made the options prop a list and generate keys using crypto.randomUUID()
+* If data doesn't include ids to use as keys, I generate keys using crypto.randomUUID()
 
 ## Other improvements I would make:
 * use Redux for state management
 * improve the speed of selecting/deselecting all checkboxes when there is a large amount of them
 * if I could modularize the code more, I could consider creating separate presentational components to help with readability, such as making a Modal component separate from the Button/Dropdown Component
-* click outside the dropdown to allow it to close
 * add more props for more flexible styling
 * improve styling, responsiveness and animations
 
