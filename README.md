@@ -5,7 +5,7 @@ Thank you for the challenge, I had a fun time!
 
 ## Instructions to Run the Project
 1) Clone the repository using git clone [insert link] in your terminal
-2) In your terminal, navigate to 'hive-challenge-app' in your directory using cd
+2) In your terminal, use cd to navigate to 'hive-challenge-app' in your directory
 3) Once in the correct directory, run 'npm install'
 3) When finished installing, run 'npm start' to start the project
 
