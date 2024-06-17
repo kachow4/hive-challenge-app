@@ -1,6 +1,12 @@
 
 # Katie Chow - Hive Take Home Prompt
 
+## Instructions to Run the Project
+1) Clone the repository using git clone [insert link] in your terminal
+2) In your terminal, navigate to 'hive-challenge-app' in your directory using cd
+3) Once in the correct directory, run 'npm install'
+3) When finished installing, run 'npm start' to start the project
+
 ## DropdownMenu Component
 * options prop takes in a list of objects with the format {id: ___ , value: ___} assuming that the list of data is fetched from a database. The id is included to be used as a key for list items.
 * width, height, and maxWidth props to help style the button (default values are 'fit-content', '40px', and '260px' respectively)
