@@ -23,6 +23,12 @@ You may also see any lint errors in the console.
 * multiSelect takes in a boolean (default is false)
 * label takes a string (default is "Select Value: ")
   
+### Examples in App on Startup
+Tag: a multi select dropdown with local data
+Age: a single select dropdown with local data
+Authors: a multiselect dropdown with data fetched from an API
+Select Value: a multiselect dropdown with local data (2,000,000 numbers)
+  
 ## Imports Used:
 * react-windows: for better efficiently loading lots of data
 * font awesome: for the chevron icons in the dropdown button
