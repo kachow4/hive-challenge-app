@@ -60,15 +60,15 @@ function App() {
         <DropdownMenu multiSelect={true} 
                       options={NAMES} 
                       label="Tag" 
-                      height="30px"
-                      maxWidth='400px'/>
+                      height="30px"/>
         <DropdownMenu options={NUMBERS} 
                       label="Age" 
                       width="100px"/>
         <DropdownMenu multiSelect={true} 
                       options={authorsList.map(author => { return {id: author._id, value: author.name} })} 
                       label='Authors' 
-                      height="50px"/>
+                      height="50px"
+                      maxWidth='200px'/>
         <DropdownMenu multiSelect={true} 
                       options={BIG_ARRAY.map(num => { return {id: crypto.randomUUID, value: num}})} />
       </div>

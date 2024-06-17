@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import './DropdownMenu.css';
 
-const DropdownMenu = ({multiSelect = false, options, label = "Select value:", height = "40px", width = 'fit-content', maxWidth = '260px'}) => {
+const DropdownMenu = ({multiSelect = false, options, label = "Select value:", height = "40px", width = '200px', maxWidth = '260px'}) => {
     const [openDropdown, setOpenDropdown] = useState(false); // updates whether or not the dropdown is open or closed
     const [selected, setSelected] = useState([]); // updates which options in the dropdown are selected
 
