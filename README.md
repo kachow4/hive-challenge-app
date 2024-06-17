@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# Notes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## DropdownMenu Component
+* options prop takes in a list of objects with the format {id: ___ , value: ___} assuming that the list of data is fetched from a database
+* if the list data was locally generated, I would have made the options prop a list and generate keys using crypto.randomUUID()
+* the DropdownMenu Component makes use of another component I built, Option, which takes props option, isChecked, and handleChange
 
 ## Available Scripts
 
