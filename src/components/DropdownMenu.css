@@ -2,7 +2,7 @@ body {
     background-color: rgb(170, 223, 161);
 }
 
-.dropdown-container {
+.container {
     width: 300px;
     display: flex;
     flex-direction: column;
@@ -10,7 +10,7 @@ body {
     margin: 10px;
 }
 
-.dropdown-label {
+.label {
     height: 20px;
     text-align: left;
     padding-bottom: 5px;
@@ -20,7 +20,7 @@ body {
 .button-dropdown {
     height: 40px;
     width: fit-content;
-    max-width: 300px;
+    max-width: 260px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -33,19 +33,19 @@ body {
     cursor: pointer;
 }
 
-.selected-list-text {
+.button-dropdown-text {
     width: fit-content;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.options-list {
+.list-wrapper {
     width: fit-content;
     max-height: 300px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     background-color: white;
     border-radius: 5px;
     padding: 10px;
@@ -56,4 +56,5 @@ body {
 .option {
     display: flex;
     gap: 10px;
+    align-items: center;
 }

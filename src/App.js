@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import DropdownMenu from './components/DropdownMenu';
 
+// LOCAL DATA FOR TESTING
 const NAMES = [{id: 'a', value: "Oliver Hansen"}, 
   {id: 'b', value: "Van Henry"}, 
   {id: 'c', value: "April Tucker"}, 
@@ -28,17 +29,26 @@ const NUMBERS = [{id: 'a', value: 1},
   {id: 's', value: 19}, 
   {id: 't', value: 20}];
 
+//ARRAY OF 20,000 DATA ENTRIES
+const BIG_ARRAY = Array.apply(null, Array(20000)).map((y, i) => {return i + 1;});
+
 function App() {
   const [authorsList, setAuthorsList] = useState([]);
 
+  //LIST OF AUTHORS FROM QUOTABLE API FOR TESTING
   useEffect(() => {
-    fetch(`https://api.quotable.io/authors?limit=150`)
-      .then((response) => {
-        return response.json()
-      }).then((data) => {
-       setAuthorsList(data.results);
-       console.log(data.results);
-    })
+    try {
+      fetch(`https://api.quotable.io/authors?limit=150`)
+        .then((response) => {
+          return response.json()
+        }).then((data) => {
+        setAuthorsList(data.results);
+      })
+    }
+    catch(e) {
+      console.log("Error!");
+      console.log(e);
+    }
   }, []);
 
   return (
@@ -46,7 +56,8 @@ function App() {
       <div className='dropdowns'>
         <DropdownMenu multiSelect={true} options={NAMES} placeholder="Tag"/>
         <DropdownMenu options={NUMBERS} placeholder="Age"/>
-        <DropdownMenu multiSelect={true} options={authorsList.map(author => { return {id: author._id, value: author.name} })} />
+        <DropdownMenu multiSelect={true} options={authorsList.map(author => { return {id: author._id, value: author.name} })} placeholder='Authors' />
+        <DropdownMenu multiSelect={true} options={BIG_ARRAY.map(num => { return {id: crypto.randomUUID, value: num}})} />
       </div>
     </div>
   );

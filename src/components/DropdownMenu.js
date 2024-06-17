@@ -1,30 +1,19 @@
 import React, { useState } from 'react';
+import { FixedSizeList as List } from "react-window";
 import './DropdownMenu.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
-
-const Option = ({option, isChecked, handleChange}) => {
-    return (
-        <div className='option'>
-            <input type="checkbox" checked={isChecked} onChange={handleChange}></input>
-            <div>{option.value}</div>
-        </div>
-    );
-}
-
-//options prop takes in a list of objects with the format {id: ___ , value: ___} assuming that the list of data is fetched from a database
-//if the list data was locally generated, I would have made the options prop a list and generate keys using crypto.randomUUID()
 const DropdownMenu = ({multiSelect = false, options, placeholder = "Select value:"}) => {
-    const [openDropdown, setOpenDropdown] = useState(false);
-    const [selected, setSelected] = useState([]); //single select state
+    const [openDropdown, setOpenDropdown] = useState(false); // updates whether or not the dropdown is open or closed
+    const [selected, setSelected] = useState([]); // updates which options in the dropdown are selected
 
-    //opens and closes the dropdown
+    // opens and closes the dropdown
     const handleClick = () => {
         setOpenDropdown(!openDropdown);
     }
 
-    //updates the list of selected options
+    //handles and updates the list of selected options
     const selectOption = ( option ) => {
         if ( multiSelect ) {
             selected.includes(option) ? 
@@ -36,13 +25,14 @@ const DropdownMenu = ({multiSelect = false, options, placeholder = "Select value
         }
     }
 
+    // selects or deselects all dropdown options
     const handleSelectAll = () => {
         selected === options ? setSelected([]) : setSelected(options);
     }
 
     return (
-        <div className='dropdown-container'>
-            <div className='dropdown-label'>{selected.length > 0 && placeholder}</div>
+        <div className='container'>
+            <div className='label'>{selected.length > 0 && placeholder}</div>
 
             {/* SINGLE SELECT DROPDOWN */}
             { !multiSelect && 
@@ -51,37 +41,54 @@ const DropdownMenu = ({multiSelect = false, options, placeholder = "Select value
                     <FontAwesomeIcon icon={ openDropdown ? faChevronUp : faChevronDown}/>
                 </button>
             }
-            {openDropdown && !multiSelect && <div className='options-list'>
-                {options.map((option) => (
-                    <Option key={option.id} 
-                        option={option} 
-                        isChecked={selected[0] === option} 
-                        handleChange={() => selectOption(option)} 
-                    />
-                ))}
+            {openDropdown && !multiSelect && <div className='list-wrapper'>
+                <List
+                    height={200}
+                    itemCount={options.length}
+                    itemSize={30}
+                    width={240}
+                >
+                    {({index, style}) => (
+                        <div key={options[index].id} className='option' style={style}>
+                            <input type="checkbox" 
+                                checked={selected[0] === options[index]} 
+                                onChange={() => selectOption(options[index])}>
+                            </input>
+                            <div>{options[index].value}</div>
+                        </div>
+                    )}
+                </List>
             </div>}
 
             {/* MULTI SELECT DROPDOWN */}
             { multiSelect && <button className='button-dropdown' onClick={handleClick}>
-                <span className='selected-list-text'>
+                <span className='button-dropdown-text'>
                     { selected.length < 1 ? placeholder : selected.map((option) => (option.value)).join(", ")}
                 </span>
                 <FontAwesomeIcon icon={ openDropdown ? faChevronUp : faChevronDown}/>
             </button>}
-            {openDropdown && multiSelect && <div className='options-list'>
-
+            {openDropdown && multiSelect && <div className='list-wrapper'>
                 {/* SELECT ALL OPTION */}
                 <div key="all" className='option'>
-                    <input type="checkbox" value="Select All" checked={selected === options} onChange={handleSelectAll}></input>
+                    <input type="checkbox" checked={selected === options} onChange={handleSelectAll}></input>
                     <div>Select All</div>
                 </div>
-                {options.map((option) => (
-                    <Option key={option.id} 
-                        option={option} 
-                        isChecked={selected.includes(option)} 
-                        handleChange={() => selectOption(option)} 
-                    />
-                ))}
+                <List
+                    height={200}
+                    itemCount={options.length}
+                    itemSize={30}
+                    width={240}
+                >
+                    {({index, style}) => (
+                        <div key={options[index].id} className='option' style={style}>
+                            <input type="checkbox" 
+                                checked={selected.includes(options[index])} 
+                                onChange={() => selectOption(options[index])}>
+                            </input>
+                            <div>{options[index].value}</div>
+                        </div>
+                    )}
+                </List>
             </div>}
         </div>
     );
